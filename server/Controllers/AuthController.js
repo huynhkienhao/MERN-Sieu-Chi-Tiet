@@ -1,5 +1,6 @@
 const userModel = require('../Models/UserModel');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     try {
@@ -31,7 +32,17 @@ const login = async (req, res) => {
         return res.status(400).send('Invalid email or password (không hợp lệ)');
     }
 
-    return res.status(200).send('Login valid (hợp lệ)');
+    const jwtToken = jwt.sign({
+        _id: user.id,
+        username: user.username,
+        role: user.role
+    }, 'jwtSecret', {
+        expiresIn: 10
+    })
+
+    return res.status(200).send({
+        accessToken: jwtToken
+    });
 }
 
 module.exports = {
