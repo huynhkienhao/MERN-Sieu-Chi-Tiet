@@ -8,6 +8,7 @@ const connectDb = require('./Services/ConnectDbService');
 
 const port = 5000;
 
+require('dotenv').config()
 // Middleware apply cors add all request
 app.use(cors());
 // Middleware get info from client by req.body
@@ -21,6 +22,6 @@ app.use('/users', userRoute);
 app.use('/api/auth', authRoute);
 
 
-app.listen(port, () => {
-    console.log(`Server is running ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running ${process.env.PORT}`);
 });
