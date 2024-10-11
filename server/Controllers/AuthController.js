@@ -20,7 +20,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     // Check email exit
-    const user = userModel.findOne({ email: req.body.email })
+    const user = await userModel.findOne({ email: req.body.email })
     if (!user) {
         return res.status(400).send('Invalid email or password (không hợp lệ)');
     }
