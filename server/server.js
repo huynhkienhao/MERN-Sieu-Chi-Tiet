@@ -6,7 +6,7 @@ const userRoute = require('./Router/UserRoute');
 const authRoute = require('./Router/AuthRoute');
 const connectDb = require('./Services/ConnectDbService');
 
-const port = 5000;
+// const port = 5000;
 
 require('dotenv').config()
 // Middleware apply cors add all request
