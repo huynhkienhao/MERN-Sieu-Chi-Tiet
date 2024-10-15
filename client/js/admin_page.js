@@ -7,7 +7,7 @@ getListUser = async () => {
             }
         }
         // Call API get list users
-        const response = await axios.get('http://localhost:5000/auth/admin/user', configHeader);
+        const response = await axios.get('auth/admin/user', configHeader);
         showListUser(response);
     } catch (error) {
         if (error.response.status === 401) {
@@ -43,6 +43,10 @@ showListUser = (response) => {
     htmlUser += `   </tbody>
                 </table>`;
     document.querySelector('.list_user').innerHTML = htmlUser;
+}
+
+handleAddUser = () => {
+    window.location.href = '/create_user.html';
 }
 
 getListUser();

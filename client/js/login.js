@@ -4,7 +4,7 @@ const handleLogin = async () => {
     const password = document.getElementById('password').value;
 
     // 2. Gửi giá trị từ client đến server
-    const response = await axios.post('http://localhost:5000/api/auth/login', {
+    const response = await axios.post('api/auth/login', {
         email: email,
         password: password
     })
