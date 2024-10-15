@@ -15,7 +15,9 @@ const getListUser = async (req, res) => {
         }
     } catch (error) {
         // Gửi mã lỗi Client để Client biết Refresh Token
-        console.log(error);
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(401).send('Token Expired');
+        }
     }
 }
 

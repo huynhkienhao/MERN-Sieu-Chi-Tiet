@@ -10,8 +10,9 @@ getListUser = async () => {
         const response = await axios.get('http://localhost:5000/auth/admin/user', configHeader);
         showListUser(response);
     } catch (error) {
-        // 1. Call refresh token
-        // 2. Token expired -> redirect to admin
+        if (error.response.status === 401) {
+            window.location.href = '/login.html';
+        }
     }
 
 }
