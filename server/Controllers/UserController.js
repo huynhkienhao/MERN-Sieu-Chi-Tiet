@@ -27,7 +27,18 @@ const postUser = (req, res) => {
     }
 }
 
+const deleteUser = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        await userModel.findByIdAndRemove(userId);
+        return res.status(200).send('Delete user successfully');
+    } catch (error) {
+
+    }
+}
+
 module.exports = {
     getListUser: getListUser,
-    postUser: postUser
+    postUser: postUser,
+    deleteUser: deleteUser
 }
