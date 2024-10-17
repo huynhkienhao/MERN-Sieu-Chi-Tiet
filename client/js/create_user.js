@@ -21,7 +21,7 @@ handleSubmitAddUser = async () => {
         })
 
         if (response.status === 200) {
-
+            window.location.href = '/admin_page.html';
         }
     } catch (error) {
         // log error
