@@ -1,3 +1,5 @@
+const initialState = 0;
+
 reducer = (state, action) => {
     if (action.type === 'INCREMENT') {
         return state + action.payload;
@@ -6,8 +8,8 @@ reducer = (state, action) => {
     }
 }
 
-createStore = (reducer) => {
-    let state = 0;
+createStore = (reducer, initialState) => {
+    let state = initialState;
 
     const dispatch = (action) => {
         // logic here
@@ -24,7 +26,7 @@ createStore = (reducer) => {
     }
 }
 
-const store = createStore();
+const store = createStore(reducer, initialState);
 console.log(store.getState());
 
 store.dispatch({
