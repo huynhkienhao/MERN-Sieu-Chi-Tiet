@@ -1,27 +1,34 @@
-// The Factory Pattern
+createStore = () => {
+    let state = 0;
 
-addCouter = () => {
-    let value = 0;
-
-    const getValue = () => {
-        return value;
+    const dispatch = (action) => {
+        // logic here
+        if (action.type === 'INCREMENT') {
+            state = state + action.payload;
+        } else if (action.type === 'DECREMENT') {
+            state = state - action.payload;
+        }
     }
 
-    const addValue = (amount) => {
-        value = value + amount;
+    const getState = () => {
+        return state;
     }
 
     return {
-        getValue: getValue,
-        addValue: addValue
+        dispatch,
+        getState
     }
 }
 
-const counter = addCouter();
-console.log(counter.getValue());
+const store = createStore();
+console.log(store.getState());
 
-counter.addValue(3);
-console.log(counter.getValue());
-
-counter.addValue(6);
-console.log(counter.getValue());
+store.dispatch({
+    type: 'INCREMENT',
+    payload: 3
+})
+store.dispatch({
+    type: 'DECREMENT',
+    payload: 1
+})
+console.log(store.getState());
