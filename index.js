@@ -1,13 +1,17 @@
-createStore = () => {
+reducer = (state, action) => {
+    if (action.type === 'INCREMENT') {
+        return state + action.payload;
+    } else if (action.type === 'DECREMENT') {
+        return state - action.payload;
+    }
+}
+
+createStore = (reducer) => {
     let state = 0;
 
     const dispatch = (action) => {
         // logic here
-        if (action.type === 'INCREMENT') {
-            state = state + action.payload;
-        } else if (action.type === 'DECREMENT') {
-            state = state - action.payload;
-        }
+        state = reducer(state, action);
     }
 
     const getState = () => {
