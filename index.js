@@ -10,10 +10,19 @@ reducer = (state, action) => {
 
 createStore = (reducer, initialState) => {
     let state = initialState;
+    let listeners = [];
 
     const dispatch = (action) => {
         // logic here
         state = reducer(state, action);
+
+        for (i = 0; i < listeners.length; i++) {
+            listeners[i]()
+        }
+    }
+
+    const subcribe = (listener) => {
+        listeners.push(listener);
     }
 
     const getState = () => {
@@ -22,12 +31,18 @@ createStore = (reducer, initialState) => {
 
     return {
         dispatch,
-        getState
+        getState,
+        subcribe
     }
 }
 
 const store = createStore(reducer, initialState);
+
 console.log(store.getState());
+
+store.subcribe(() => {
+    console.log('store change');
+})
 
 store.dispatch({
     type: 'INCREMENT',
